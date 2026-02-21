@@ -6,17 +6,16 @@ import Link from "next/link";
 import { Eye, EyeOff, Mail, Lock } from "lucide-react";
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
-import { useAuth } from "@/hooks/useAuth";
 import { validateLoginForm } from "@/lib/validators";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
-  const { login } = useAuth();
-
   const [form, setForm] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [serverError, setServerError] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const route = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -25,27 +24,27 @@ export default function LoginPage() {
     if (serverError) setServerError("");
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const fieldErrors = validateLoginForm(form);
-    if (Object.keys(fieldErrors).length) {
+    if (Object.keys(fieldErrors).length > 0) {
       setErrors(fieldErrors);
       return;
     }
 
     setLoading(true);
+
     try {
-      await login(form);
-    } catch (err: unknown) {
-      const msg =
-        (err as { response?: { data?: { detail?: string } } })?.response?.data
-          ?.detail || "Invalid email or password.";
-      setServerError(msg);
+      // temporary fake login delay (optional)
+      await new Promise((resolve) => setTimeout(resolve, 500));
+
+      // redirect directly
+      route.push("/admin/dashboard");
     } finally {
       setLoading(false);
     }
   };
-
   return (
     <div className="min-h-screen grid grid-cols-1 md:grid-cols-2 p-4">
       {/* LEFT SIDE – FORM */}
