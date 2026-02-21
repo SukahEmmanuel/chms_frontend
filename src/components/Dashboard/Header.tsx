@@ -30,7 +30,7 @@ export default function Header({ dropdownOpen, setDropdownOpen }: HeaderProps) {
 
   const handleLogout = () => {
     setProfileDropdownOpen(false);
-    router.push("/auth/login");
+    router.push("/login");
   };
 
   const handleProfile = () => {
