@@ -29,6 +29,7 @@ type NavItem = {
 const navItems: NavItem[] = [
   { name: "Overview", icon: Home, link: "/admin/dashboard" },
   { name: "Members", icon: Users, link: "/admin/members" },
+  { name: "Attendance", icon: Users, link: "/admin/attendance" },
   { name: "Events", icon: Calendar, link: "/events" },
   { name: "Transactions", icon: HandHeart, link: "/giving" },
   { name: "Ministry", icon: Music, link: "/ministry" },
