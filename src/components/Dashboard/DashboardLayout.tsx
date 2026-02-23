@@ -1,7 +1,16 @@
 "use client";
 
 import { useState, PropsWithChildren } from "react";
-import { Home, Calendar, Users, HandHeart, Music, BookOpen, Send, ChevronDown } from "lucide-react";
+import {
+  Home,
+  Calendar,
+  Users,
+  HandHeart,
+  Music,
+  BookOpen,
+  Send,
+  ChevronDown,
+} from "lucide-react";
 import Header from "../Dashboard/Header";
 import Sidebar from "../Dashboard/Sidebar";
 
@@ -28,10 +37,7 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
       className="min-h-screen flex flex-col text-gray-800"
       style={{ backgroundColor: "#f5f5f5" }}
     >
-      <Header
-        dropdownOpen={dropdownOpen}
-        setDropdownOpen={setDropdownOpen}
-      />
+      <Header dropdownOpen={dropdownOpen} setDropdownOpen={setDropdownOpen} />
 
       {/* Mobile Nav */}
       {dropdownOpen && (
@@ -50,7 +56,9 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
                 <button
                   onClick={() => {
                     if (item.subNav) {
-                      setOpenSubNav(openSubNav === item.name ? null : item.name);
+                      setOpenSubNav(
+                        openSubNav === item.name ? null : item.name,
+                      );
                     } else {
                       setDropdownOpen(false);
                       setOpenSubNav(null);
@@ -58,11 +66,18 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
                   }}
                   className="flex w-full items-center justify-between p-3 rounded-xl transition-colors"
                   style={{ color: "#1f2937" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#f0f0ff")}
-                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.backgroundColor = "#f0f0ff")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.backgroundColor = "transparent")
+                  }
                 >
                   <div className="flex items-center gap-3">
-                    <item.icon className="h-4 w-4" style={{ color: "#0000ac" }} />
+                    <item.icon
+                      className="h-4 w-4"
+                      style={{ color: "#0000ac" }}
+                    />
                     <span className="text-sm">{item.name}</span>
                   </div>
                   {item.subNav && (
@@ -87,12 +102,18 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
                         className="flex w-full items-center px-3 py-2 rounded-lg text-sm transition-colors"
                         style={{ color: "#6b7280" }}
                         onMouseEnter={(e) => {
-                          (e.currentTarget as HTMLButtonElement).style.backgroundColor = "#f1e600";
-                          (e.currentTarget as HTMLButtonElement).style.color = "#0000ac";
+                          (
+                            e.currentTarget as HTMLButtonElement
+                          ).style.backgroundColor = "#f1e600";
+                          (e.currentTarget as HTMLButtonElement).style.color =
+                            "#0000ac";
                         }}
                         onMouseLeave={(e) => {
-                          (e.currentTarget as HTMLButtonElement).style.backgroundColor = "transparent";
-                          (e.currentTarget as HTMLButtonElement).style.color = "#6b7280";
+                          (
+                            e.currentTarget as HTMLButtonElement
+                          ).style.backgroundColor = "transparent";
+                          (e.currentTarget as HTMLButtonElement).style.color =
+                            "#6b7280";
                         }}
                       >
                         {sub.name}
